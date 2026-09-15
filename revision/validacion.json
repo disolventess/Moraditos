@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "widths": [
+    320,
+    360,
+    390,
+    430,
+    768,
+    1024,
+    1366,
+    1672
+  ],
+  "layoutDelta": 0,
+  "checks": [
+    "desktop separation",
+    "carousel",
+    "theme persistence",
+    "mobile block order",
+    "no overflow",
+    "menu Escape",
+    "offscreen pause/resume",
+    "reduced motion",
+    "no JS errors"
+  ]
+}

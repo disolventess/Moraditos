@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+.info {
+  padding: 80px max(24px, 8vw);
+  font-family: "Nunito Sans", sans-serif;
+  color: #210738;
+  background: #fcfbff;
+}
+.info h2 {
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(30px, 4vw, 48px);
+  margin-top: 0;
+}
+.info p,
+.info li {
+  max-width: 760px;
+  font-size: 19px;
+  line-height: 1.6;
+}
+.info details {
+  padding: 20px 0;
+  border-bottom: 1px solid #e1d7ef;
+  max-width: 760px;
+}
+.info summary {
+  font-weight: 700;
+  cursor: pointer;
+}

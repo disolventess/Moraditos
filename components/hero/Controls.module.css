@@ -1,0 +1,134 @@
+.side {
+  position: absolute;
+  z-index: 3;
+  top: 46%;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  background: var(--glass);
+  color: var(--brand);
+  box-shadow: var(--glass-shadow);
+  cursor: pointer;
+}
+.previous {
+  left: 1%;
+}
+.next {
+  right: 1%;
+}
+.side svg {
+  width: 28px;
+  height: 28px;
+}
+/* Both controls occupy real rows; no absolute bottom offsets or overlap. */
+.controls {
+  justify-self: center;
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  margin-top: 32px;
+}
+.dots {
+  display: flex;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 40px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  box-shadow: var(--glass-shadow);
+}
+.dots button {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.dots span {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid #ffffffc9;
+  background: linear-gradient(135deg, #fffc, #c4a2f17a);
+  box-shadow:
+    inset 0 1px 3px #fff,
+    0 2px 6px #6d28df2a;
+  transition: transform 240ms ease;
+}
+.dots button[aria-pressed="true"] span {
+  background: linear-gradient(140deg, #e4c9ff, #963cff 55%, #6714d9);
+  transform: scale(1.35, 1.1);
+}
+.scroll {
+  display: grid;
+  place-content: center;
+  width: 46px;
+  height: 62px;
+  border-radius: 28px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--brand);
+  box-shadow: var(--glass-shadow);
+}
+.scroll svg {
+  width: 22px;
+  height: 15px;
+  animation: down 2.8s ease-in-out infinite;
+  animation-play-state: var(--ambient-play-state, running);
+}
+.scroll svg:nth-child(1) {
+  opacity: 0.4;
+}
+.scroll svg:nth-child(2) {
+  opacity: 0.65;
+  animation-delay: 0.15s;
+}
+.scroll svg:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes down {
+  0%,
+  65%,
+  100% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(2px);
+  }
+}
+@media (max-width: 1250px) {
+  .side {
+    width: 44px;
+    height: 44px;
+  }
+}
+@media (max-width: 760px) {
+  /* The labeled selector above the headline replaces arrows/dots on mobile. */
+  .side,
+  .dots {
+    display: none;
+  }
+  .controls {
+    margin-top: 26px;
+    gap: 0;
+  }
+  .scroll {
+    width: 42px;
+    height: 58px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll svg {
+    animation: none;
+  }
+  .dots span {
+    transition: none;
+  }
+}
