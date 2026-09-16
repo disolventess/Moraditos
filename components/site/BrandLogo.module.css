@@ -1,0 +1,5 @@
+.logo { display: inline-flex; align-items: center; gap: .045em; flex-shrink: 0; width: max-content; color: var(--page-brand, #6d28df); text-decoration: none !important; font-family: "Fredoka", sans-serif; font-size: 44px; font-weight: 600; letter-spacing: -1.5px; }
+.symbol { display: block; flex: 0 0 1.32em; width: 1.32em; height: 1em; margin-top: -.13em; background: currentColor; mask: url('/hero/moraditos-logo.svg') center / contain no-repeat; -webkit-mask: url('/hero/moraditos-logo.svg') center / contain no-repeat; }
+.name { display: block; line-height: 1; }
+.logo[data-compact="true"] { font-size: 32px; letter-spacing: -1px; }
+@media (max-width:760px) { .logo { font-size: 30px; letter-spacing: -1px; } }

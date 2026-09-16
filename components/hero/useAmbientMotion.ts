@@ -1,17 +1,20 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Writes one CSS variable only on visibility changes, never on animation frames.
 export function useAmbientMotion() {
+  const [visible, setVisible] = useState(true);
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
     let inView = true;
-    const update = () =>
+    const update = () => {
+      setVisible(inView && !document.hidden);
       element.style.setProperty(
         "--ambient-play-state",
         inView && !document.hidden ? "running" : "paused",
       );
+    };
     const observer = new IntersectionObserver(
       ([entry]) => {
         inView = entry.isIntersecting;
@@ -27,5 +30,5 @@ export function useAmbientMotion() {
       document.removeEventListener("visibilitychange", update);
     };
   }, []);
-  return ref;
+  return { ref, visible };
 }

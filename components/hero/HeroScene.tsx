@@ -1,39 +1,46 @@
-import Image from "next/image";
-import Icon from "./Icons";
-import { slides } from "./slides";
+import Mascot from "./Mascot";
+import DevicePreview from "./DevicePreview";
+import NotificationCard from "./NotificationCard";
 import s from "./Scene.module.css";
 
-export default function HeroScene({ active }: { active: number }) {
-  const slide = slides[active];
+type Props = {
+  target: number | null;
+  copyIndex: number;
+  phase: string;
+};
+
+export default function HeroScene({
+  target,
+  copyIndex,
+  phase,
+}: Props) {
+  const streamer = copyIndex === 1;
+
   return (
-    <div className={s.scene}>
-      {slides.map((item, index) => (
-        <div
-          key={item.id}
-          className={s.layer}
-          data-active={index === active}
-          aria-hidden={index !== active}
-        >
-          <Image
-            src={item.image}
-            alt={item.alt}
-            fill
-            preload={index === 0}
-            sizes="(max-width: 760px) 90vw, 58vw"
-            className={s.photo}
-          />
-        </div>
-      ))}
-      <div className={s.notification}>
-        <span className={s.bell}>
-          <Icon name="bell" />
-        </span>
-        <div>
-          <span className={s.label}>{slide.notification}</span>
-          <strong>{slide.amount}</strong>
-          <small>{slide.caption}</small>
-        </div>
+    <div
+      className={s.scene}
+      data-changing={target !== null}
+      data-streamer={streamer}
+      role="group"
+      aria-label={
+        streamer
+          ? "Ejemplo de alerta Moraditos en una laptop de streaming"
+          : "Ejemplo de aviso Moraditos en otro celular"
+      }
+    >
+      <div className={s.deviceLayer} data-phase={phase}>
+        <DevicePreview streamer={streamer} />
+
+        {!streamer && (
+          <div className={s.noticeSlot}>
+            <NotificationCard />
+          </div>
+        )}
       </div>
+
+      <Mascot streamer={(target ?? copyIndex) === 1} />
+
+      <span className={s.demo}>Vista de ejemplo</span>
     </div>
   );
 }

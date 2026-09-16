@@ -10,8 +10,8 @@
   position: absolute;
   display: block;
   border-radius: 50%;
-  background: linear-gradient(135deg, #bea0f724, #d8c5ff0a);
-  animation: drift 24s ease-in-out infinite alternate;
+  background: linear-gradient(135deg, #b58af742, #d5bcff16);
+  animation: drift 9s ease-in-out infinite alternate;
   animation-play-state: var(--ambient-play-state, running);
 }
 .top {
@@ -27,7 +27,7 @@
   left: -30%;
   bottom: -160px;
   --tilt: 32deg;
-  animation-delay: -8s !important;
+  animation-delay: -3s !important;
 }
 .right {
   width: 60%;
@@ -35,14 +35,14 @@
   right: -26%;
   bottom: 5%;
   --tilt: -28deg;
-  animation-delay: -16s !important;
+  animation-delay: -6s !important;
 }
 @keyframes drift {
   from {
-    transform: translate3d(-6px, -4px, 0) rotate(var(--tilt));
+    transform: translate3d(-22px, -14px, 0) rotate(var(--tilt)) scale(0.98);
   }
   to {
-    transform: translate3d(9px, 7px, 0) rotate(var(--tilt));
+    transform: translate3d(24px, 18px, 0) rotate(calc(var(--tilt) + 4deg)) scale(1.035);
   }
 }
 /* A small, finite squash-and-stretch on interaction. */
@@ -73,7 +73,7 @@
 }
 @media (max-width: 760px) {
   .waves span {
-    animation-duration: 32s;
+    animation-duration: 12s;
   }
   .top {
     width: 100%;
@@ -105,3 +105,5 @@
     transform: none;
   }
 }
+/* Fade decorative shapes before the section edge so they cannot end in a hard cut. */
+.waves { mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 110px), transparent 100%); }

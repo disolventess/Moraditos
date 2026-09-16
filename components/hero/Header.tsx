@@ -1,8 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
-import { slides } from "./slides";
+import { useAutoHideHeader } from "./useAutoHideHeader";
+import BrandLogo from "../site/BrandLogo";
 import m from "./Motion.module.css";
-import { useRef } from "react";
+import MobileMenu from "./MobileMenu";
 import Icon from "./Icons";
 import s from "./Header.module.css";
 
@@ -12,43 +11,46 @@ type Props = {
   onTheme: () => void;
   onSelect: (index: number) => void;
   panelHref: string;
+  menuOpen: boolean;
+  onMenuOpen: (open: boolean) => void;
 };
 export default function Header({
   dark,
   onTheme,
-  active,
   onSelect,
   panelHref,
+  menuOpen,
+  onMenuOpen,
 }: Props) {
-  const menu = useRef<HTMLDetailsElement>(null);
-  function closeMenu() {
-    if (menu.current) menu.current.open = false;
-  }
+  const { header, spacer } = useAutoHideHeader(menuOpen);
+  function closeMenu() { onMenuOpen(false); }
   const links = (
     <>
       <a href="#como-funciona" onClick={closeMenu}>
-        CÓMO FUNCIONA
+        Cómo funciona
       </a>
       <button
         type="button"
         onClick={() => {
           onSelect(0);
+          document.getElementById("hero")?.scrollIntoView();
           closeMenu();
         }}
       >
-        PARA NEGOCIOS
+        Negocios
       </button>
       <button
         type="button"
         onClick={() => {
           onSelect(1);
+          document.getElementById("hero")?.scrollIntoView();
           closeMenu();
         }}
       >
-        PARA STREAMERS
+        Streamers
       </button>
-      <a href="#preguntas-frecuentes" onClick={closeMenu}>
-        PREGUNTAS FRECUENTES
+      <a href="#que-es-moraditos" onClick={closeMenu}>
+        Más información
       </a>
     </>
   );
@@ -59,12 +61,10 @@ export default function Header({
     </a>
   );
   return (
-    <div className={s.headerGroup}>
+    <div ref={spacer} className={s.headerSpace}>
+    <div ref={header} className={s.headerGroup} data-hidden="false">
       <header className={s.header}>
-        <Link className={s.logo} href="/" aria-label="Moraditos, inicio">
-          <Image src="/hero/symbol.svg" width={72} height={55} alt="" />
-          <span>oraditos</span>
-        </Link>
+        <BrandLogo />
         <div className={s.bar}>
           <nav className={s.desktop} aria-label="Navegación principal">
             {links}
@@ -79,49 +79,17 @@ export default function Header({
             <Icon name="moon" className={dark ? s.selected : s.inactiveIcon} />
           </button>
           <div className={s.desktopPanel}>{panel}</div>
-          <details
-            ref={menu}
-            className={s.mobile}
-            onKeyDown={(e) => {
-              if (e.key === "Escape") {
-                closeMenu();
-                menu.current?.querySelector("summary")?.focus();
-              }
-            }}
-          >
-            <summary aria-label="Abrir menú">
-              <span />
-              <span />
-              <span />
-            </summary>
-            <nav aria-label="Navegación móvil">
-              {links}
-              {panel}
-            </nav>
-          </details>
+          <MobileMenu open={menuOpen} onOpen={onMenuOpen}>
+            {links}
+            {panel}
+          </MobileMenu>
         </div>
       </header>
       <div className={s.mobileIntro}>
         {panel}
-        <div className={s.audience} role="group" aria-label="Elegir público">
-          <span
-            className={s.selection}
-            data-index={active}
-            aria-hidden="true"
-          />
-          {slides.map((slide, index) => (
-            <button
-              type="button"
-              key={slide.id}
-              aria-pressed={active === index}
-              className={m.slime}
-              onClick={() => onSelect(index)}
-            >
-              {slide.label}
-            </button>
-          ))}
-        </div>
+
       </div>
+    </div>
     </div>
   );
 }

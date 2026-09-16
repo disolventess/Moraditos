@@ -1,8 +1,10 @@
 import type { SVGProps } from "react";
 
 type Name =
-  "left" | "right" | "down" | "arrow" | "sun" | "moon" | "grid" | "bell";
+  "left" | "right" | "down" | "arrow" | "sun" | "moon" | "grid" | "bell" | "pause" | "play";
 const paths: Record<Name, string> = {
+  pause: "M8 5v14M16 5v14",
+  play: "m8 5 11 7-11 7Z",
   left: "m14 6-6 6 6 6",
   right: "m10 6 6 6-6 6",
   down: "m6 9 6 6 6-6",

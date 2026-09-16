@@ -1,0 +1,49 @@
+.root { display: none; }
+@media (max-width: 1200px) {
+  .root { display: block; }
+  .trigger {
+    display: grid; place-content: center; gap: 5px; width: 44px; height: 44px;
+    background: none; border: 0; border-radius: 50%; color: var(--brand); cursor: pointer;
+  }
+  .trigger span {
+    width: 22px; height: 2px; border-radius: 3px; background: currentColor;
+    transition: transform 300ms ease, opacity 180ms ease;
+  }
+  .root[data-open="true"] .trigger span:first-child { transform: translateY(7px) rotate(45deg); }
+  .root[data-open="true"] .trigger span:nth-child(2) { opacity: 0; transform: scaleX(0.4); }
+  .root[data-open="true"] .trigger span:last-child { transform: translateY(-7px) rotate(-45deg); }
+  .reveal {
+    position: absolute; top: calc(100% + 12px); right: 0; width: min(330px, 86vw);
+    opacity: 0; visibility: hidden; transform: translateY(-8px) scale(.97);
+    transform-origin: top right;
+    transition: opacity 220ms ease, transform 340ms cubic-bezier(.2,.8,.2,1), visibility 0s 340ms;
+  }
+  .root[data-open="true"] .reveal {
+    opacity: 1; visibility: visible; transform: none; transition-delay: 0s;
+  }
+  .panel {
+    display: grid; gap: 6px; padding: 20px; border-radius: 24px;
+    background: var(--menu); border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), 0 16px 40px #190b3326;
+  }
+  .panel > :is(a, button) {
+    font: inherit; font-size: 14px; font-weight: 750; color: var(--ink);
+    text-align: left; text-decoration: none; border: 0; background: none;
+    cursor: pointer; min-height: 44px; padding: 10px 0;
+    opacity: 0; transform: translateY(-5px);
+    transition: opacity 180ms, transform 180ms;
+  }
+  .root[data-open="true"] .panel > * { opacity: 1; transform: none; transition-delay: 90ms; }
+  .root[data-open="true"] .panel > :nth-child(2) { transition-delay: 120ms; }
+  .root[data-open="true"] .panel > :nth-child(3) { transition-delay: 150ms; }
+  .root[data-open="true"] .panel > :nth-child(4) { transition-delay: 180ms; }
+  .root[data-open="true"] .panel > :last-child { transition-delay: 210ms; }
+  .panel > a:last-child { padding: 12px; background: var(--glass); color: var(--brand); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .trigger span, .panel > :is(a,button) { transition: none !important; transform: none; }
+}
+
+/* Invisible navigation must never capture pointer input. */
+.reveal { pointer-events: none; }
+.root[data-open="true"] .reveal { pointer-events: auto; }
