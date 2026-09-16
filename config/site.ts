@@ -7,6 +7,6 @@ export const site = {
   whatsapp: "", // Solo dígitos, con país: 51 + número
   location: "", // Ciudad, país o dirección comercial pública
   supportHours: "", // Horario de atención
-  social: { instagram: "", tiktok: "", facebook: "" }, // URL completa
+  social: { instagram: "https://instagram.com/moraditos.pe", tiktok: "https://tiktok.com/@moraditos.pe", facebook: "" }, // URL completa
   legal: { privacy: "", terms: "", complaints: "" }, // URL o ruta de páginas existentes
 };

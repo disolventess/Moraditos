@@ -5,9 +5,11 @@ import HowItWorks from "./HowItWorks";
 import UseCases from "./UseCases";
 import Icon from "../hero/Icons";
 import s from "./ProductInfo.module.css";
+import Pricing from "../pricing/Pricing";
+import waves from "./IntroWaves.module.css";
 export default function ProductInfo() {
   return <div className={s.sections}>
-    <section className={s.intro} id="que-es-moraditos">
+    <section className={`${s.intro} ${waves.section}`} id="que-es-moraditos">
       <RevealOnce className={s.portrait}>
         <div className={s.halo} aria-hidden="true" />
         <Image src="/hero/negociante.webp" alt="Una comerciante revisa un aviso en su celular" width={800} height={1200} sizes="(max-width: 760px) 90vw, 38vw" />
@@ -23,6 +25,7 @@ export default function ProductInfo() {
     </section>
     <HowItWorks />
     <UseCases />
+    <Pricing />
     <section className={s.faq} id="preguntas-frecuentes"><RevealOnce>
       <span className={s.eyebrow}>ANTES DE COMENZAR</span><h2>Lo esencial, sin vueltas.</h2>
       <details><summary>¿Necesito Yape en cada dispositivo?</summary><p>No. El Android vinculado recibe la notificación de Yape. Los demás dispositivos autorizados consultan los avisos desde el panel de Moraditos.</p></details>

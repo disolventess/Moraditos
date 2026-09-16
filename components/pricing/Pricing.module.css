@@ -1,0 +1,39 @@
+.section { position: relative; isolation: isolate; overflow: clip; padding: 65px 26px 75px; background: var(--page-bg,#fcfbff); color: var(--page-ink,#210738); scroll-margin-top: 110px; }
+.inner { position: relative; z-index: 1; max-width: 1240px; margin: auto; }
+.heading { text-align: center; }
+.heading h2 { font: 600 clamp(35px,4vw,55px)/1.1 "Fredoka",sans-serif; letter-spacing: -1px; margin: 0 0 13px; }
+.heading p { font-size: 21px; color: var(--page-muted,#746585); line-height: 1.4; margin: 0; }
+.billing { display: flex; width: 286px; max-width: 100%; gap: 4px; margin: 24px auto 0; padding: 4px; border-radius: 99px; background: var(--section-bg,#f4effc); }
+.billing button { flex: 1; min-height: 44px; padding: 10px 20px; border: 0; border-radius: 99px; background: transparent; color: var(--page-ink); font: 700 16px "Nunito Sans",sans-serif; cursor: pointer; transition: background-color 150ms,color 150ms; }
+.billing button[aria-pressed="true"] { color: white; background: #7422eb; }
+.section .periodNote { min-height: 18px; text-align: center; color: var(--page-muted); font-size: 12px; margin: 10px 0 27px; }
+.cards { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; align-items: stretch; }
+.card { display: flex; flex-direction: column; min-width: 0; padding: 24px; border: 1px solid var(--line,#e8dcfa); border-radius: 25px; background: var(--page-bg,#fcfbff); box-shadow: 0 4px 16px #28144703; transition: transform 200ms ease,box-shadow 200ms ease,border-color 200ms ease; }
+.card[data-featured="true"] { border-color: #9c61f7; background: var(--section-bg,#f4effc); box-shadow: 0 7px 22px #7422eb09; }
+.badge { display: block; min-height: 18px; margin-bottom: 8px; font-size: 11px; letter-spacing: .6px; font-weight: 900; color: var(--page-brand,#6d28df); }
+.planHeader h3 { font: 600 clamp(23px,2.3vw,33px)/1.15 "Fredoka",sans-serif; letter-spacing: -.4px; margin: 0 0 10px; }
+.planHeader p { min-height: 44px; margin: 0; font-size: 16px; line-height: 1.4; color: var(--page-muted); }
+.price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 7px; margin-top: 23px; }
+.price strong { font: 600 clamp(33px,3.7vw,51px)/1.1 "Fredoka",sans-serif; letter-spacing: -1px; white-space: nowrap; }
+.price > span { color: var(--page-muted); font-size: 16px; }
+.card .equivalent { margin: 8px 0 19px; font-size: 12px; color: var(--page-muted); min-height: 18px; line-height: 1.5; }
+.features, .exclusions ul { list-style: none; padding: 0; margin: 0; }
+.features { border-top: 1px solid var(--line); padding-top: 20px; }
+.features li, .exclusions li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.4; margin-bottom: 12px; }
+.features svg, .exclusions svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; color: var(--page-brand); }
+.exclusions { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 8px; }
+.exclusions h4 { margin: 0 0 12px; font-size: 15px; color: var(--page-muted); }
+.exclusions svg { color: #c24470; }
+.card .planNote { border-top: 1px solid var(--line); margin: 8px 0 18px; padding-top: 14px; font-size: 13px; line-height: 1.5; color: var(--page-muted); }
+.cta { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 66px; margin-top: auto; padding: 12px 14px; border-radius: 20px; background: #7422eb; color: white; text-decoration: none; font-weight: 800; font-size: 17px; line-height: 1.25; text-align: center; }
+.features:last-of-type { margin-bottom: 15px; }
+.cta[data-free="true"] { background: var(--wave-tint,#e8dcfa); color: var(--page-brand); }
+.card:focus-within { transform: translateY(-6px); border-color: var(--page-brand); box-shadow: 0 15px 32px #7422eb19; }
+@media(hover:hover) and (pointer:fine) { .card:hover { transform: translateY(-7px); border-color: var(--page-brand); box-shadow: 0 16px 35px #7422eb1d; } }
+.waves { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.waves span { position: absolute; width: 370px; height: 650px; border: 34px solid var(--wave-tint,#e8dcfa); opacity: .28; border-radius: 48% 52% 40% 60% / 54% 43% 57% 46%; }
+.waves span:first-child { left: -285px; top: 120px; transform: rotate(-23deg); }
+.waves span:last-child { right: -295px; bottom: -100px; transform: rotate(25deg); }
+@media(max-width:1050px) { .section { padding-inline: 20px; } .cards { gap: 14px; } .card { padding: 20px 18px; } .features li,.exclusions li { font-size: 14px; gap: 9px; } .cta { font-size: 15px; } .price strong { font-size: 37px; } }
+@media(max-width:760px) { .section { padding: 44px 20px; } .heading p { font-size: 17px; } .cards { grid-template-columns: 1fr; gap: 22px; max-width: 440px; margin: auto; } .card { padding: 23px; } .planHeader h3 { font-size: 30px; } .planHeader p { min-height: 0; } .price strong { font-size: 45px; } .features li,.exclusions li { font-size: 15px; } .cta { margin-top: 14px; font-size: 17px; } .waves span { opacity: .2; } }
+@media(prefers-reduced-motion:reduce) { .card, .billing button { transition: none; } .card:hover,.card:focus-within { transform: none; } }
